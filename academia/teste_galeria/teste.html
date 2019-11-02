@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.thumbs img').click(function(){
+                var thumb = $(this).attr('src');
+                var cover = $('.cover img');
+
+                if(cover.attr('src') !== thumb){
+                cover.fadeTo("200", "0",function(){
+                    cover.attr('src',thumb);
+                    cover.fadeTo("150",1);
+                });
+            }
+            });
+        });
+       
+    </script>
+</head>
+
+<body>
+    <article class="product_images">
+        <h1> Smartphone Sony Xperia 23 Desbloqueado Branco Android 4.4 3G/4G/WI-FI Camera 20</h1>
+
+        <div class="cover">
+            <img src="../Imagens/bg1.jpg" />
+        </div>
+        <div class="thumbs">
+            <img class="active" src="../Imagens/bg1.jpg" />
+            <img src="../Imagens/bg3.jpg" />
+            <img src="../Imagens/bg4.jpg" />
+            <img src="../Imagens/bg2.jpg" />
+        </div>
+    </article>
+   
+
+
+</body>
+
+</html>
