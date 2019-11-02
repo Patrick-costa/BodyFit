@@ -1,0 +1,47 @@
+ <!-- Menu -->
+ <div class="container-menu" style="width: 100%">
+        <div class="menu" style="width: 100%;">
+            <nav class="navbar navbar-expand-lg navbar-right " id="navbar">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+                    <ul class=" navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="index.php">INÍCIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="index.php#planos">PLANOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="index.php#time">NOSSO TIME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">ATIVIDADES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="index.php#estruturas">ESTRUTURAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="redirecionarGrade.php">GRADE DE HORÁRIOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">ÁREA DO ALUNO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="index.php#contato">CONTATO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="trabalhe.php">TRABALHE CONOSCO</a>
+                        </li>
+                    </ul>
+                   
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <!-- Fim do Menu -->
