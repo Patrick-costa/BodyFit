@@ -38,7 +38,20 @@
                             <a class="nav-link disabled" href="trabalhe.php">TRABALHE CONOSCO</a>
                         </li>
                     </ul>
-                   
+                    <?php if(empty($_SESSION['usuario'])){
+                            echo "";
+                        } else{
+                            echo "<a style='color: white; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em'> ".$_SESSION['usuario']."</a>";
+                        }?>
+
+
+                    <?php if(empty($_SESSION['usuario'])){
+                        echo "";
+                    } else{
+                        echo '
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.php" style="font-size: 12px; color: white; text-decoration: none;">DESCONECTAR&nbsp;&nbsp;&nbsp;</a>
+                    ';
+                    }?>
                 </div>
 
             </nav>

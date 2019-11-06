@@ -23,12 +23,13 @@
         $usuario = filter_input(INPUT_POST, "usuario") ?? "";
         $senha = filter_input(INPUT_POST, "password") ?? "";
         $chave = filter_input(INPUT_POST, "chave") ?? "";
+        $tipo = filter_input(INPUT_POST, "tipo") ?? "";
         
    
        
         if(createCadastro($primeiro_nome, $segundo_nome, $terceiro_nome, $matricula, $cpf, $estado_civil, 
         $data_cadastro, $email, $telefone1, $telefone2,
-        $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf, $usuario, $senha, $chave)){
+        $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf, $usuario, $senha, $chave,$tipo)){
             header('location: ../index.php');
         } else{
             echo "falha ao gravar";

@@ -31,12 +31,16 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="acesso.php">ACESSOS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="faleconosco.php">SOLICITAÇÕES</a>
+                        </li>
 
                     </ul>
 
                         <?php if(empty($_SESSION['usuario'])){
                             echo "";
                         } else{
+
                             echo "<a style='color: white; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em'> ".$_SESSION['usuario']."</a>";
                         }?>
 

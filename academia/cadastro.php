@@ -110,7 +110,7 @@ $chaveEstrangeira = "(SELECT LAST_INSERT_ID())";
                             <div class="col-md-7">
                                 <i class="fa fa-address-card"></i>
                                 <input type="text" id="rua" class="input-form3" placeholder="Escreva o nome da sua rua"
-                                    name="end" required>
+                                    name="rua" required>
                             </div>
                             <div class="col-md-2">
                                 <i class="fa fa-address-card"> </i>
@@ -128,11 +128,11 @@ $chaveEstrangeira = "(SELECT LAST_INSERT_ID())";
                             <div class="col-md-5">
                                 <i class="fa fa-address-card"> </i>
                                 <input type="text" id="bairro" class="input-form3" placeholder="Escreva o bairro"
-                                    name="Bairro" required>
+                                    name="bairro" required>
                             </div>
                             <div class="col-md-2">
                                 <i class="fa fa-address-card"> </i>
-                                <select class="input-form3" id="uf" placeholder="UF" name="Estado" required>
+                                <select class="input-form3" id="uf" placeholder="UF" name="estado" required>
                                     <option>AC</option>
                                     <option>AL</option>
                                     <option>AP</option>

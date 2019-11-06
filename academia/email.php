@@ -1,17 +1,23 @@
 <?php
+    require('./crud/crudCadastro.php');
+    
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $usuario = filter_input(INPUT_POST, "name") ?? "";
+        $email = "select email from tb_aluno where id_aluno =(select id_login from tb_login where usuario = '{$usuario}')";
 
-include './crud/crudCadastro.php';
+        $result = mysqli_query($con, $email);
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-$email = filter_input(INPUT_POST, "esqueciemail") ?? "";
-$nome = filter_input(INPUT_POST, "name") ?? ""; 
+        $return = mysqli_fetch_assoc($result);
+        
+        $emailRetorno = $return['email'];
 
-if(redefineSenha($novasenha, $email)){
-    echo " Redefinido com sucesso ";
-} else{
-    echo " Falha ao redefinir ";
-}
-}
+
+        if(redefineSenha($novasenha, $usuario)){
+            echo " Redefinido com sucesso ";
+        } else{
+            echo "Falha ao Redefinir";
+        } 
+    }
 
 
 require_once('./phpmailer/PHPMailerAutoload.php'); //chama a classe de onde você a colocou.
@@ -39,7 +45,7 @@ $mail->SingleTo = true;
 $mail->From = "Nova Senha - Academia BodyFit"; 
 $mail->FromName = "Patrick"; 
 
-$mail->addAddress($email); // email do destinatario.
+$mail->addAddress($emailRetorno); // email do destinatario.
 $mail->SetFrom('patrickcosta470@gmail.com');
 $mail->Subject = "Nova Senha - Academia BodyFit"; 
 $mail->Body = '<html>
@@ -59,7 +65,7 @@ $mail->Body = '<html>
             <br><br><p style="font-family: helvetica, sans-serif; font-size: 30px; text-transform: uppercase; font-weight: 600; margin: 0 auto; text-align: center; color: white; letter-spacing: 0.7;"><br>Olá!</p>
             <p style="font-family: helvetica, sans-serif; font-size: 15px; text-transform: uppercase; font-weight: 600; margin: 0 auto; text-align: center; color: white; letter-spacing: 0.7;">Obrigado por usar os serviços da Academia BodyFit</p>
             <p style="font-family: helvetica, sans-serif; font-size: 15px; text-transform: uppercase; font-weight: 600; margin: 0 auto; text-align: center; color: white; letter-spacing: 0.7;">Vejo que você pediu para redifinir sua senha, caso contrário ignore esse e-mail</p>
-            <br><br><br><p style="font-family: helvetica, sans-serif; font-size: 13px; font-weight: 600; margin: 0 auto; text-align: center; color: white; letter-spacing: 0.7;">Seu usuário é: ' .$nome.'</p>
+            <br><br><br><p style="font-family: helvetica, sans-serif; font-size: 13px; font-weight: 600; margin: 0 auto; text-align: center; color: white; letter-spacing: 0.7;">Seu usuário é: ' .$usuario.'</p>
             <br><p style="font-family: helvetica, sans-serif; font-size: 13px; font-weight: 600; margin: 0 auto; text-align: center; color: white; letter-spacing: 0.7;">E sua nova senha é: '.$novasenha.'</p>
 
             <br><br>

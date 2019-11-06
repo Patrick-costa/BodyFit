@@ -1,6 +1,6 @@
 <?php session_start();
 
-include './crud/conexao.php' ;
+include './crud/listarLoja.php';
     $msg = false;
 
     if(isset($_FILES['arquivo'])){
@@ -29,6 +29,9 @@ include './crud/conexao.php' ;
 }
 
     }
+    date_default_timezone_set('America/Sao_Paulo');
+    
+    $data = date('Y-m-d H:i:s');
 
 
 ?>
@@ -44,6 +47,8 @@ include './crud/conexao.php' ;
     <link rel="stylesheet" href="./css/main.css">
     <script src="./js/fontawesome.js"></script>
     <link rel="icon" href="./Imagens/haltere.png" type="image/x-icon">
+    <script src="../academia/js/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
     <title>BodyFit - Sua Sáude Esta Aqui!</title>
 
 </head>
@@ -184,7 +189,7 @@ else if($_SESSION['usuario']){
                 <br><br>
             </div>
         </div>
-        <br><br>
+
         <!--Container de Localização-->
         <div class="container-location">
             <div class="container-location-two">
@@ -192,36 +197,24 @@ else if($_SESSION['usuario']){
                 <p><i class="fas fa-map-marker-alt"></i> Localização</p>
                 <p style="font-size: 10px; position: relative; bottom: 15px;">Clique para ver o endereço</p>
                 <ul>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#colubande">•
-                            Colubandê</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#coelho">•
-                            Coelho</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#lacre">•
-                            Biquinho de Lacre</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#mutondo">•
-                            Mutondo</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#alcantara">•
-                            Alcantara</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#catarina">•
-                            Jardim Catarina</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#icarai">•
-                            Icaraí</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#niteroi">•
-                            Centro - Niteroi</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#sao">• Centro
-                            - São Gonçalo</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#marica">•
-                            Centro - Maricá</a></li>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="#itaborai">•
-                            Centro - Itaboraí</a></li>
+                    <?php foreach(listaLojas() as $loja): ?>
+                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="<?=$loja['localizacao']?>">•
+                    <?= $loja['localizacao']?></a></li>
+                    
+                    <?php endforeach; ?>
+                  
                 </ul>
+                <?php if(empty($_SESSION['tipo'])){
+                  
+                } else if($_SESSION['tipo'] == 'Administrador'){
+                    echo "<a style='font-size: 13px; position: relative; bottom: 20px;
+                    text-decoration: none;' href='cadastrarLoja.php'>Cadastrar Loja</a>";
+                } ?>
+
             </div>
         </div>
         <!--Fim-->
 
-        <!--Quebra de Linha-->
-        <br><br>
-        <!--Fim-->
 
         <!--Container do Time de Funcionarios-->
         <div class="container-time">
@@ -286,9 +279,7 @@ else if($_SESSION['usuario']){
 
     <!--Fim do Container Principal-->
 
-    <!--Quebra de Linha-->
-    <br><br><br><br>
-    <!--Fim-->
+
 
     <!--Planos da Academia-->
     <center>
@@ -452,22 +443,22 @@ else if($_SESSION['usuario']){
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5"><br>
-                    <form class="form-email" action="" method="POST" id="fale">
-                        <select name="opcao" class="input-contato" required>
+                    <form class="form-email" action="./crud/registrarFale.php" method="POST" id="fale">
+                        <select name="tipo" class="input-contato" required>
                             <option>Comentário</option>
                             <option>Reclamação</option>
                             <option>Sugestão</option>
                             <option>Agradecimento</option>
                         </select>
                         <br><br>
-                        <input type="text" placeholder="Nome" class="input-contato" required>
+                        <input type="text" placeholder="Nome" name="nome" class="input-contato" required>
                         <br><br>
-                        <input type="tel" placeholder="Telefone" class="input-contato" required>
+                        <input type="tel" placeholder="Telefone" id="tel" name="tel" class="input-contato" required>
                         <br><br>
-                        <input type="text" placeholder="Email" class="input-contato" required>
+                        <input type="text" placeholder="Email" name="email" class="input-contato" required>
                         <br><br>
-                        <textarea type="text" placeholder="Mensagem" required></textarea>
-                        <input type="hidden" name="hora" class="input-contato">
+                        <textarea type="text" name="descricao" placeholder="Mensagem" required></textarea>
+                        <input type="hidden" name="data" value="<?=$data?>" class="input-contato">
                         <br><br>
                         <button type="submit" form="fale" class="button-contato" href="">Enviar</button>
                         <br><br><br><br>
@@ -565,7 +556,7 @@ else if($_SESSION['usuario']){
     </div>
 
     <!-- Modal Colubandê -->
-    <div class="modal fade" id="colubande" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+    <div class="modal fade" id="Colubande" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -820,10 +811,6 @@ else if($_SESSION['usuario']){
         </div>
     </div>
 
-
-
-    <script src="../academia/js/jquery-3.1.1.min.js"></script>
-
     <script>
 	var width = screen.width;
 
@@ -851,6 +838,12 @@ else if($_SESSION['usuario']){
                 preview.src = "";
             }
         }
+    </script>
+
+<!--Script para Mascara -->
+<script>
+        $("#tel").mask("(99) 99999-9999");
+
     </script>
 
     <!-- JavaScript (Opcional) -->

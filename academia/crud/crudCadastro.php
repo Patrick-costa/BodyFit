@@ -7,7 +7,7 @@
 # Função responsável por inserir os dados no banco
 function createCadastro($primeiro_nome, $segundo_nome, $terceiro_nome, $matricula, $cpf, $estado_civil, 
 $data_cadastro, $email, $telefone1, $telefone2,
-$rua, $numero, $complemento, $cep, $cidade, $bairro, $uf, $usuario, $senha, $chave) {
+$rua, $numero, $complemento, $cep, $cidade, $bairro, $uf, $usuario, $senha, $chave,$tipo) {
     // recebe o retorno da função com a conexão aberta
     $link = abreConexao();
 
@@ -17,7 +17,7 @@ $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf, $usuario, $senha, $cha
     $query2 =  "insert into tb_endereco(rua, numero, complemento, cep, cidade, bairro, uf) values('{$rua}',{$numero},'{$complemento}','{$cep}',
     '{$cidade}','{$bairro}','{$uf}')";
 
-    $query3 = "insert into tb_login(usuario, senha) values ('{$usuario}','{$senha}')";
+    $query3 = "insert into tb_login(usuario, senha, tipo) values ('{$usuario}','{$senha}','{$tipo}')";
 
     $query4 = "insert into tb_aluno(primeiro_nome, segundo_nome, terceiro_nome, matricula, cpf, estado_civil, 
     email, data_cadastro, login_id, telefone_id, endereco_id) values ('{$primeiro_nome}','{$segundo_nome}','{$terceiro_nome}',{$matricula},'{$cpf}','{$estado_civil}','{$email}',
@@ -49,27 +49,27 @@ $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf, $usuario, $senha, $cha
 
 // ----------------------------------------------------------------------------------------------------
 
-// Função responsável por redefinir senha
-$novasenha = substr(md5(time()), 0, 6);
+// // Função responsável por redefinir senha
+// $novasenha = substr(md5(time()), 0, 6);
 
-function redefineSenha($novasenha, $email) {
-    // recebe o retorno da função com a conexão aberta
-    $link = abreConexao();
+// function redefineSenha($novasenha, $email) {
+//     // recebe o retorno da função com a conexão aberta
+//     $link = abreConexao();
 
-    // variavel responsável por definir a query SQL a ser disparada no banco
-    $query = " update tb_login set senha = '{$novasenha}' where usuario = '{$nome}' ";
-    echo $query ."<br>";
-    try{ // Tenta executar
-        if(mysqli_query($link, $query)) {
-            return true;
-        }
-    } catch(\Throwable $th) { // entra nesse bloco caso ocorra erro
-        throw new \Exception("Erro ao gravar no banco", 1);
-        return false;
-    } finally { // executa sempre indiferente de funcionar ou ocorrer um erro
-        mysqli_close($link);
-    }
-}
+//     // variavel responsável por definir a query SQL a ser disparada no banco
+//     $query = " update tb_login set senha = '{$novasenha}' where usuario = '{$nome}' ";
+//     echo $query ."<br>";
+//     try{ // Tenta executar
+//         if(mysqli_query($link, $query)) {
+//             return true;
+//         }
+//     } catch(\Throwable $th) { // entra nesse bloco caso ocorra erro
+//         throw new \Exception("Erro ao gravar no banco", 1);
+//         return false;
+//     } finally { // executa sempre indiferente de funcionar ou ocorrer um erro
+//         mysqli_close($link);
+//     }
+// }
 
 // ----------------------------------------------------------------------------------------------------------------
 // Função responsável por definir uma nova senha
@@ -262,3 +262,127 @@ Function updateGrade($id,$segunda, $terca, $quarta, $quinta, $sexta, $sabado){
         mysqli_close($link);
     }
  }
+
+//  ----------------------------------------------------------------------------------------------------------------
+
+function createLoja($localizacao, $cnpj, $endereco_id, $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf){
+    $link = abreConexao();
+
+    $query =  "insert into tb_endereco(rua, numero, complemento, cep, cidade, bairro, uf) values('{$rua}',{$numero},'{$complemento}','{$cep}',
+    '{$cidade}','{$bairro}','{$uf}')";
+    $query2 = "insert into tb_lojas(localizacao, cnpj, endereco_id) values ('{$localizacao}','{$cnpj}',{$endereco_id})";
+
+    echo $query."<br>";
+    echo $query2;
+
+    try{
+        if(mysqli_query($link,$query)){
+            if(mysqli_query($link, $query2)){
+
+                return true;
+            }
+        }
+    } catch(\Throwable $th){
+        throw new \Exception("Erro ao atualizar o banco",1);
+        return false;
+    } finally{
+        mysqli_close($link);
+    }
+ }
+
+//  -----------------------------------------------------------------------------------------------------------------------
+
+function getLoja(){
+
+    $link = abreConexao();
+
+    $query = "select * from tb_lojas";
+
+    try{
+        
+        $rs = mysqli_query($link, $query);
+        $listaLojas = Array();
+
+        while($linha = mysqli_fetch_assoc($rs)){
+            array_push($listaLojas, $linha);
+        }
+
+        return $listaLojas;
+    } catch(\Throwable $th) {
+        throw new \Exception("Erro ao listar do banco", 1);
+        return Array(); // retorna uma estrutura de array vazio
+    } finally {
+        mysqli_close($link);
+    }
+}
+
+// ------------------------------------------------------------------------------------------------------------------
+
+function createFale($descricao, $nome, $email, $data, $telefone, $tipo){
+
+    $link = abreConexao();
+
+    $query = "insert into tb_faleconosco(descricao, nome, data, email, telefone, tipo) values('{$descricao}','{$nome}','{$data}','{$email}','{$telefone}','{$tipo}')";
+
+    echo $query."<br>";
+
+    try{
+        if(mysqli_query($link,$query)){
+                return true;
+            }
+        
+    } catch(\Throwable $th){
+        throw new \Exception("Erro ao atualizar o banco",1);
+        return false;
+    } finally{
+        mysqli_close($link);
+    }
+ }
+
+// ----------------------------------------------------------------------------------------------------------------------
+
+function getFale(){
+    $link = abreConexao();
+
+    $query = "select * from tb_faleconosco";
+
+    try{
+        
+        $rs = mysqli_query($link, $query);
+        $listaFale = Array();
+
+        while($linha = mysqli_fetch_assoc($rs)){
+            array_push($listaFale, $linha);
+        }
+
+        return $listaFale;
+    } catch(\Throwable $th) {
+        throw new \Exception("Erro ao listar do banco", 1);
+        return Array(); // retorna uma estrutura de array vazio
+    } finally {
+        mysqli_close($link);
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+// Função responsável por redefinir senha
+$novasenha = substr(md5(time()), 0, 6);
+
+function redefineSenha($novasenha, $usuario) {
+    // recebe o retorno da função com a conexão aberta
+    $link = abreConexao();
+
+    // variavel responsável por definir a query SQL a ser disparada no banco
+    $query = " update tb_login set senha = '{$novasenha}' where usuario = '{$usuario}' ";
+    echo $query ."<br>";
+    try{ // Tenta executar
+        if(mysqli_query($link, $query)) {
+            return true;
+        }
+    } catch(\Throwable $th) { // entra nesse bloco caso ocorra erro
+        throw new \Exception("Erro ao gravar no banco", 1);
+        return false;
+    } finally { // executa sempre indiferente de funcionar ou ocorrer um erro
+        mysqli_close($link);
+    }
+}

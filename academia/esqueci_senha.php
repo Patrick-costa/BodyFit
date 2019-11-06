@@ -42,9 +42,7 @@
               <center><i id="user" class="fas fa-user"></i>
                   <input type="text" class="input-form" placeholder="Digite seu usuario" name="name">
               
-              <br><br>
-      <input type="email" class="input-form" name="esqueciemail" id="esqueciemail" placeholder="Digite seu email" required /></center>
-              <br><br>
+              <br><br><br><br>
               
               <center><button type="submit" form="esqueci" class="input-button" href="">Enviar</button></center>
           </form>
