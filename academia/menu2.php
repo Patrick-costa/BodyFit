@@ -34,6 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="faleconosco.php">SOLICITAÇÕES</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="faleconosco.php">Usuarios</a>
+                        </li>
 
                     </ul>
 

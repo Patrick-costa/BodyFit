@@ -386,3 +386,50 @@ function redefineSenha($novasenha, $usuario) {
         mysqli_close($link);
     }
 }
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Função para listar usuarios
+
+function listaUser(){
+    $link = abreConexao();
+
+    $query = "select * from tb_login order by usuario";
+
+    try{
+        $rs = mysqli_query($link,$query);
+        $listaUser = Array();
+
+        while($linha = mysqli_fetch_assoc($rs)){
+            array_push($listaUser, $linha);
+        }
+
+        return $listaUser;
+    } catch(\Throwable $th){
+        throw new \Exception("Erro ao gravar no banco",1);
+        return false;
+    } finally{
+        mysqli_close($link);
+    }
+}
+
+//Função para Editar usuarios
+
+Function updateUser($id,$usuario,$tipo){
+    $link = abreConexao();
+
+    $query = "update tb_login set usuario = '{$usuario}', tipo= '{$tipo}' where id_login = {$id}";
+
+    echo $query."<br>";
+
+    try{
+        if(mysqli_query($link, $query)) {
+            return true;
+        }
+    } catch(\Throwable $th) {
+        throw new \Exception("Erro ao atualizar no banco", 1);
+        return false;
+    } finally {
+        mysqli_close($link);
+    }
+ }

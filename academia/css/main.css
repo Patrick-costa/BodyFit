@@ -643,3 +643,14 @@ h2{
     position: relative;
     top: 42%;
 }
+
+#edit:hover{
+    color: #2554a5  
+}
+
+#del{
+    color: gray;
+}
+#del:hover{
+    color: red
+}

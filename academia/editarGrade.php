@@ -78,7 +78,7 @@
                                             data-grade_quarta="<?= $grade['quarta_feira'] ?>"
                                             data-grade_quinta="<?= $grade['quinta_feira'] ?>"
                                             data-grade_sexta="<?= $grade['sexta_feira'] ?>"
-                                            data-grade_sabado="<?= $grade['sabado'] ?>">Editar</a></td>
+                                            data-grade_sabado="<?= $grade['sabado'] ?>" style="color: gray;"><i id="edit" class="fas fa-edit"></i></a></td>
                                 </tr>
 
                                 <?php endforeach; ?>
