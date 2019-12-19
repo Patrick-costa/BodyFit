@@ -8,8 +8,8 @@
                 </button>
 
 
-                <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
-                    <ul class=" navbar-nav mr-auto mt-2 mt-lg-0">
+                <div class="collapse navbar-collapse navbar-right " id="navbarTogglerDemo03">
+                    <ul class=" navbar-nav mr-auto mt-2 mt-lg-0 right">
                         <li class="nav-item">
                             <a class="nav-link disabled" href="index.php">INÍCIO</a>
                         </li>
@@ -30,6 +30,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">ÁREA DO ALUNO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" data-toggle="modal" data-target="#lojas">LOJAS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="index.php#contato">CONTATO</a>

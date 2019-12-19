@@ -37,7 +37,12 @@ insert into tb_grade_dias(horario, segunda_feira, terca_feira, quarta_feira, qui
 
 insert into tb_telefone(telefone_1, telefone_2) values('(00) 00000-0000','0000000000000');
 insert into tb_endereco(rua, numero, complemento, uf, cidade, bairro, cep) values('Rua Jose',1,'','rj','sao goncalo','colun','0000000');
+insert into tb_login(usuario,senha,tipo) values('admin','admin','Administrador');
 insert into tb_aluno(primeiro_nome, segundo_nome, terceiro_nome, matricula, cpf, estado_civil, email, data_cadastro, login_id, telefone_id, endereco_id)
 values('admin','admin','admin',1,'1','sol','admin@bodyfit.com.br','2019-01-01',1,1,1);
-insert into tb_login(usuario,senha,tipo) values('admin','admin','Administrador');
 
+SELECT rua,numero,bairro,cidade,uf,cep FROM tb_endereco_loja where id_endereco = tb_lojas.endereco_id;
+
+insert into tb_loja(localizacao, cnpj, rua, numero, complemento, cep, cidade, bairro, uf) values ('0','00.000.000/0000-00','0',0,'','00000-000', '0','0','RJ');
+
+select * from tb_curriculos

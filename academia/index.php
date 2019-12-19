@@ -49,13 +49,15 @@ include './crud/listarLoja.php';
     <link rel="icon" href="./Imagens/haltere.png" type="image/x-icon">
     <script src="../academia/js/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+    <script src="./Modal/script.js"></script>
+    <script src="./teste_galeria/carrousel.js"></script>
     <title>BodyFit - Sua Sáude Esta Aqui!</title>
 
 </head>
 
 <body>
 
-<?php
+    <?php
 if(empty($_SESSION['usuario'])){
     include 'menu.php'; 
 } else if($_SESSION['tipo'] == 'Administrador'){
@@ -72,7 +74,7 @@ else if($_SESSION['usuario']){
     echo "<br><br><br>";
         }
         ?>
-        <br><br><br>
+    <br><br><br>
     <!--Fim da Quebra de Linha-->
 
     <!--Container Principal-->
@@ -190,32 +192,6 @@ else if($_SESSION['usuario']){
             </div>
         </div>
 
-        <!--Container de Localização-->
-        <div class="container-location">
-            <div class="container-location-two">
-                <br>
-                <p><i class="fas fa-map-marker-alt"></i> Localização</p>
-                <p style="font-size: 10px; position: relative; bottom: 15px;">Clique para ver o endereço</p>
-                <ul>
-                    <?php foreach(listaLojas() as $loja): ?>
-                    <li><a href="" style="font-size: 12px; color: black" data-toggle="modal" data-target="<?=$loja['localizacao']?>">•
-                    <?= $loja['localizacao']?></a></li>
-                    
-                    <?php endforeach; ?>
-                  
-                </ul>
-                <?php if(empty($_SESSION['tipo'])){
-                  
-                } else if($_SESSION['tipo'] == 'Administrador'){
-                    echo "<a style='font-size: 13px; position: relative; bottom: 20px;
-                    text-decoration: none;' href='cadastrarLoja.php'>Cadastrar Loja</a>";
-                } ?>
-
-            </div>
-        </div>
-        <!--Fim-->
-
-
         <!--Container do Time de Funcionarios-->
         <div class="container-time">
             <div class="box-text">
@@ -238,42 +214,113 @@ else if($_SESSION['usuario']){
                             sociais.</strong>
                     </p>
                 </div><br>
-                <center>
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-sm-12 col-lg-3">
+
+                <!-- <div class="box-carrousel">
+
+                    <ul class="carrousel">
+
+                        <li class="item">
                             <div class="circle-box" style="margin-top: 20px;">
                                 <a href=""><img style="position: relative; " src="./Imagens/mulher.png" width="220"></a>
                             </div>
-                        </div>
+                        </li>
 
-
-
-                        <div class="col-12 col-md-6 col-sm-12 col-lg-3">
+                        <li class="item">
                             <div class="circle-box" style="margin-top: 20px;">
                                 <a href=""><img style="position: relative; left: -40px; " src="./Imagens/raona.png"
                                         width="250"></a>
                             </div>
-                        </div>
+                        </li>
 
-                        <div class="col-12 col-md-6 col-sm-12 col-lg-3">
+                        <li class="item">
                             <div class="circle-box" style="margin-top: 20px;">
                                 <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
                             </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-sm-12 col-lg-3">
+                        </li>
+                        <li class="item">
                             <div class="circle-box" style="margin-top: 20px;">
-                                <a href=""><img style="position: relative; " src="./Imagens/lutador-png-6.png"
-                                        width="220"></a>
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
                             </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="circle-box" style="margin-top: 20px;">
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
+                            </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="circle-box" style="margin-top: 20px;">
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
+                            </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="circle-box" style="margin-top: 20px;">
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
+                            </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="circle-box" style="margin-top: 20px;">
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
+                            </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="circle-box" style="margin-top: 20px;">
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
+                            </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="circle-box" style="margin-top: 20px;">
+                                <a href=""><img style="position: relative; " src="./Imagens/pablo.png" width="220"></a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <center>
+                        <div class="nav back">
+                            <p class="pback ativo">•</p>
+                        </div>
+                        <div class="nav forth">
+                            <p class="pforth">•</p>
+                        </div>
+                        <div class="nav forth">
+                            <p class="pforth">•</p>
+                        </div>
+                        <div class="nav forth">
+                            <p class="pforth">•</p>
+                        </div>
+                        <div class="clear"></div>
+                    </center>
+                </div> -->
+
+                <center>
+                    <div class="product_images"><br>
+                        <div class="cover">
+                            <img src="./Imagens/c1.jpg">
+                        </div>
+                        <div class="thumbs">
+                            <img class="active" src="./Imagens/c1.jpg" />
+                            <img src="./Imagens/c2.jpg" />
+                            <img src="./Imagens/c3.jpg" />
+                            <img src="./Imagens/c4.jpg" />
+                            <img src="./Imagens/c5.jpg" />
+                            <img src="./Imagens/c6.jpg" />
+                            <img src="./Imagens/c7.jpg" />
+                            <img src="./Imagens/c8.jpg" />
                         </div>
                     </div>
                 </center>
+
             </div>
             <!--Quebra de Linha-->
             <br><br><br><br><br><br>
             <!--Fim-->
         </div>
+
         <!--Fim do Container de Funcionarios-->
     </main>
 
@@ -453,7 +500,7 @@ else if($_SESSION['usuario']){
                         <br><br>
                         <input type="text" placeholder="Nome" name="nome" class="input-contato" required>
                         <br><br>
-                        <input type="tel" placeholder="Telefone" id="tel" name="tel" class="input-contato" required>
+                        <input type="tel" placeholder="Telefone" id="tel3" name="tel" class="input-contato" required>
                         <br><br>
                         <input type="text" placeholder="Email" name="email" class="input-contato" required>
                         <br><br>
@@ -471,26 +518,6 @@ else if($_SESSION['usuario']){
 
     <?php include 'rodape.php'; ?>
 
-    <!-- Modal Plano Unico -->
-    <div class="modal fade" id="planounico" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Plano Unico</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal Plano familia -->
     <div class="modal fade" id="planofamilia" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
@@ -555,19 +582,78 @@ else if($_SESSION['usuario']){
         </div>
     </div>
 
-    <!-- Modal Colubandê -->
-    <div class="modal fade" id="Colubande" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+    <!-- Modal lOJAS -->
+    <div class="modal fade" id="lojas" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Colubandê</h5>
+                    <h5 class="modal-title" id="TituloModalCentralizado">Lojas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <?php 
+                        foreach(ListaLojas() as $loja): ?>
+                    <span style="font-size: 20px; font-weight: 600"><?=$loja['localizacao']?></span><br>
+                    Rua: <?=$loja['rua']?><br>
+                    N°: <?=$loja['numero']?><br>
+                    Cidade: <?=$loja['cidade']?><br>
+                    <hr>
+                    <br>
+                    <?php endforeach ?>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <?php 
+                    
+                    if(!empty($_SESSION['usuario'])){
+                        if($_SESSION['tipo'] == "Administrador"){
+                        echo '<button type="button" class="btn btn-secondary"><a href="cadastrarLoja.php" style="color: white; text-decoration: none;">Cadastrar Loja</a></button>';
+                    }
+                }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Curriculo -->
+    <div class="modal fade" id="curriculo" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Pesquisar Curriculos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="busca-c" method="POST" action="">
+                        <select class="busca-curriculo" id="busca-curriculo">
+                            <option selected></option>
+                            <option value="nome">Nome</option>
+                            <option value="email">Email</option>
+                            <option value="cpf">CPF</option>
+                            <option value="vaga">Vaga</option>
+                        </select>
+
+                        <input type="hidden" class="input-nome" id="input-nome" name="nome" placeholder="Digite o nome"
+                        style="width:60%">
+                        <input type="hidden" class="input-email" id="input-email" name="email" placeholder="Digite o email" style="width:60%">
+                        <input type="hidden" class="input-cpf" id="input-cpf" name="cpf" placeholder="Digite o cpf" style="width:60%">
+                        <input type="hidden" class="input-vaga" id="input-vaga" name="vaga" placeholder="Digite a vaga" style="width:60%">
+                    </form>
+
+                <br>
+                    <ul class="resultado" style="color: black">
+
+                    </ul>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -576,215 +662,50 @@ else if($_SESSION['usuario']){
         </div>
     </div>
 
-    <!-- Modal Coelho -->
-    <div class="modal fade" id="coelho" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+
+
+    <!-- Modal lOJAS -->
+    <div class="modal fade" id="lojas2" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Coelho</h5>
+                    <h5 class="modal-title" id="TituloModalCentralizado">Lojas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <?php 
+                        foreach(ListaLojas() as $loja): ?>
+                    <span style="font-size: 20px; font-weight: 600"><?=$loja['localizacao']?></span><br>
+                    Rua: <?=$loja['rua']?><br>
+                    N°: <?=$loja['numero']?><br>
+                    Cidade: <?=$loja['cidade']?><br>
+                    <input type="hidden" id="id" value="<?=$loja['id_loja']?>">
+                    <a href="./crud/deleteLoja.php?id=<?= $loja['id_loja'] ?>"
+                        onclick="return confirm('Você tem certeza?')">Excluir</a>
+                    <hr>
+                    <br>
+                    <?php endforeach ?>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <?php 
+                    
+                    if(!empty($_SESSION['usuario'])){
+                        if($_SESSION['tipo'] == "Administrador"){
+                            echo '<button type="button" class="btn btn-secondary"><a href="cadastrarLoja.php" style="color: white; text-decoration: none;">Cadastrar Loja</a></button>';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Biquinho de Lacre -->
-    <div class="modal fade" id="lacre" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Biquinho de Lacre</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mutondo -->
-    <div class="modal fade" id="mutondo" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Mutondo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Alcantara -->
-    <div class="modal fade" id="alcantara" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Alcantara</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Jardim Catarina -->
-    <div class="modal fade" id="catarina" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Jardim Catarina</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Icaraí -->
-    <div class="modal fade" id="icarai" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Icaraí</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Centro Niteroi -->
-    <div class="modal fade" id="niteroi" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Centro Niteroi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Centro São Gonçalo -->
-    <div class="modal fade" id="sao" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Centro São Gonçalo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Centro Marica -->
-    <div class="modal fade" id="marica" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Centro Maricá</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Centro Itaboraí -->
-    <div class="modal fade" id="itaborai" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Itaboraí</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Imagem-->
     <div class="modal fade" id="imagem" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
@@ -800,8 +721,10 @@ else if($_SESSION['usuario']){
                 <div class="modal-body">
                     <form action="index.php" method="POST" enctype="multipart/form-data">
                         <input type="file" name="arquivo" onchange="previewImagem()" required><br><br><br>
-                        <center><img class="perfil"style="width: 350px; height: 350px; border-radius: 8px;"><br><br></center>
+                        <center><img class="perfil" style="width: 350px; height: 350px; border-radius: 8px;"><br><br>
+                        </center>
                         <input type="submit" value="salvar">
+
 
                 </div>
                 <div class="modal-footer">
@@ -812,15 +735,51 @@ else if($_SESSION['usuario']){
     </div>
 
     <script>
-	var width = screen.width;
 
-    if(width < 992){
+        $(function () {
+            $('.busca-curriculo').change(function () {
+                var id = jQuery(this).val();
 
-            $('#navbar').css({"background-color":"#3e444d00"});
-        
-    }
+                if (id == "cpf") {
+                    $('.input-cpf').attr("type", "text");
+                    $('.input-nome').attr("type", "hidden");
+                    $('.input-email').attr("type", "hidden");
+                    $('.input-vaga').attr("type", "hidden");
+                }
+                if (id == "nome") {
+                    $('.input-cpf').attr("type", "hidden");
+                    $('.input-nome').attr("type", "text");
+                    $('.input-email').attr("type", "hidden");
+                    $('.input-vaga').attr("type", "hidden");
+                }
+                if (id == "email") {
+                    $('.input-cpf').attr("type", "hidden");
+                    $('.input-nome').attr("type", "hidden");
+                    $('.input-email').attr("type", "text");
+                    $('.input-vaga').attr("type", "hidden");
+                }
 
-</script>
+                if (id == "vaga") {
+                    $('.input-cpf').attr("type", "hidden");
+                    $('.input-nome').attr("type", "hidden");
+                    $('.input-email').attr("type", "hidden");
+                    $('.input-vaga').attr("type", "text");
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        var width = screen.width;
+
+        if (width < 992) {
+
+            $('#navbar').css({ "background-color": "#3e444d00" });
+
+        }
+
+    </script>
     <script>
         function previewImagem() {
             var imagem = document.querySelector('input[name=arquivo]').files[0];
@@ -840,9 +799,9 @@ else if($_SESSION['usuario']){
         }
     </script>
 
-<!--Script para Mascara -->
 <script>
-        $("#tel").mask("(99) 99999-9999");
+        $("#input-cpf").mask("000.000.000-00");
+        $("#tel3").mask("(00) 90000-0000");
 
     </script>
 
@@ -851,12 +810,17 @@ else if($_SESSION['usuario']){
 
     <script src="./js/galeria.js"></script>
     <script src="../academia/js/app.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script type="text/javascript" src="personalizado.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
+            <!--Script para Mascara -->
+
 </body>
 
 </html>

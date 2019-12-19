@@ -10,6 +10,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $telefone = filter_input(INPUT_POST, 'tel');
     $tipo = filter_input(INPUT_POST, 'tipo');
     
+    
     if(createFale($descricao, $nome, $email, $data, $telefone, $tipo)){
         echo "Cadastrado com sucesso";
     } else{

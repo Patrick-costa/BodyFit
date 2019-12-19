@@ -9,6 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $rg = filter_input(INPUT_POST, "rg") ?? "";
     $tel1 = filter_input(INPUT_POST, "tel1") ?? "";
     $tel2 = filter_input(INPUT_POST, "tel2") ?? "";
+    $vaga = filter_input(INPUT_POST, "vaga") ?? "";
     $pergunta = filter_input(INPUT_POST, "pergunta") ?? "";
     $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
     $arquivo = substr(md5(time()), 0, 6). $extensao;
@@ -17,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio.$arquivo);
 
     
-    if(insertCurriculo($nome,$email,$cpf,$rg,$tel1,$tel2,$pergunta,$arquivo,$data)){
+    if(insertCurriculo($nome,$email,$cpf,$rg,$tel1,$tel2,$vaga,$pergunta,$arquivo,$data)){
         header('location: index.php');
     } else{
         echo "Falha ao gravar";

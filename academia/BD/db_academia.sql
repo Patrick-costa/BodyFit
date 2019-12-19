@@ -1,3 +1,4 @@
+
 create database academia;
 
 use academia;
@@ -55,9 +56,15 @@ create table tb_lojas(
 	id_loja int primary key auto_increment,
     localizacao varchar(100) not null,
     cnpj varchar(25) not null unique,
-    endereco_id int not null,
-    constraint fk_endereco_loja foreign key(endereco_id) references tb_endereco(id_endereco)
+    rua varchar(150) not null,
+    numero int,
+    complemento varchar(150),
+    uf char(3) not null,
+    cidade varchar(100) not null,
+    bairro varchar(100) not null,
+    cep varchar(30) not null
 );
+
 
 /*create table tb_lojas_funcionario(
 	id_loja int not null,
@@ -102,6 +109,7 @@ create table tb_curriculos(
     rg varchar(20) not null,
     telefone_1 varchar(20) not null,
     telefone_2 varchar(20) not null,
+    vaga varchar(50) not null,
     pergunta text not null,
     arquivo varchar(200) not null,
     data datetime not null
@@ -116,3 +124,5 @@ create table tb_faleconosco(
     telefone varchar(30) not null,
     tipo varchar(50) not null
 );
+
+ select * from tb_curriculos;

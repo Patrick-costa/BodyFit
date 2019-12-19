@@ -1,0 +1,54 @@
+.links-tu{
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background-color: #006699;
+    text-decoration: none;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 0.8em;
+}
+
+.links-tu:hover{
+    transition: 0.2s;
+    background-color: #0066cc;
+}
+
+
+
+.modal2{
+    border-radius: 5px;
+    position: fixed;
+    width: 70%;
+    top: 10%;
+    left: 15%;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    border: solid 1px #aaa;
+    background-color: #f0f0f0;
+    box-shadow: 1px 1px 10px #555;
+}
+
+.modal-fechar{
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    background-color: #990000;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.modal-fechar:hover{
+    transition: 0.2s;
+    background-color: #e03030;
+}
+
+.modal-txt{
+    font-family: sans-serif;
+    font-size: 0.95em;
+    line-height: 25px;
+    color: #222;
+
+}

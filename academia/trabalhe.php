@@ -75,6 +75,24 @@ $data = date('Y-m-d H:i:s');
                                 <input type="text" id="t2" class="input-form3" placeholder="Escreva seu número de celular" name="tel2">
                             </div>
                         </div>
+
+                        <div class="col-xs-12">
+                            <i class="fa fa-user"> </i>
+                            <select type="text" class="input-form3" placeholder="Escolha a vaga de interesse" name = "vaga">
+                            <option></option>
+                            <option>Limpeza</option>
+                            <option>Professor de Musculacao</option>
+                            <option>Professor de Dança</option>
+                            <option>Professor de Luta</option>
+                            <option>Informatica</option>
+                            <option>Manutencao</option>
+                            <option>Recepcao</option>
+                            <option>Atendimento ao Cliente</option>
+                            <option>Vendedor</option>
+                            <option>Outras</option>
+                            </select>
+                        </div>
+
                         <br><br>
                         <div class="col-xs-12">
                             <h5 style="position: relative; top: 30px;"> Porque você quer trabalhar conosco? </h5><br>
@@ -85,10 +103,10 @@ $data = date('Y-m-d H:i:s');
                         <br>
                         <div class="col-xs-12">
                             <h5 style="position: relative; top: 30px;"> Envie seu Curriculo</h5><br><br>
-                            <h6>Seu curriculo deve estar em PDF e conter o tamanho de até 2MB</h6>
+                            <h6>Seu curriculo deve estar em formato PDF ou Word(.doc) e conter o tamanho de até 2MB</h6>
                         </div>
                         <br>
-                        <input type="file" name="arquivo">
+                        <input type="file" name="arquivo" required accept="application/pdf">
                         <br><br><br>
                         <div class="col-xs-12 text-right ">
                             <input type="submit" class="button-contato" style="width: 120px;" form="curriculo">
@@ -100,7 +118,6 @@ $data = date('Y-m-d H:i:s');
             <br><br>
         </div>
     </div>
-
 
     <br><br><br><br>
 

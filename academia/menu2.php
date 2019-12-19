@@ -14,7 +14,7 @@
                             <a class="nav-link disabled" href="index.php">INÍCIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="index.php    #planos">PLANOS</a>
+                            <a class="nav-link disabled" href="index.php#planos">PLANOS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="index.php#time">NOSSO TIME</a>
@@ -28,15 +28,33 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="redirecionarGrade.php">GRADE DE HORÁRIOS</a>
                         </li>
+                        <?php
+                        if(!empty($_SESSION['usuario'])){
+                            if($_SESSION['tipo'] == 'Administrador'){
+                                echo'<li class="nav-item">
+                                <a class="nav-link disabled" href="#" data-toggle="modal" data-target="#lojas2">LOJAS</a>
+                            </li>';
+                            } else{
+                                echo '<li class="nav-item">
+                                <a class="nav-link disabled" href="#" data-toggle="modal" data-target="#lojas">LOJAS</a>
+                            </li>';
+                            }
+                        } ?>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="acesso.php">ACESSOS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="faleconosco.php">SOLICITAÇÕES</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="faleconosco.php">Usuarios</a>
-                        </li>
+
+                        <?php
+                        if(!empty($_SESSION['usuario'])){
+                            if($_SESSION['tipo'] == 'Administrador'){
+                                echo'<li class="nav-item">
+                                <a class="nav-link disabled" href="#" data-toggle="modal" data-target="#curriculo">CURRICULOS</a>
+                            </li>';
+                            }
+                        } ?>
 
                     </ul>
 

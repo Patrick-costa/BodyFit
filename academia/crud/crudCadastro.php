@@ -242,11 +242,11 @@ Function updateGrade($id,$segunda, $terca, $quarta, $quinta, $sexta, $sabado){
 
  // Função para adicionar curriculos
 
- function insertCurriculo($nome,$email,$cpf,$rg,$tel1,$tel2,$pergunta,$arquivo,$data){
+ function insertCurriculo($nome,$email,$cpf,$rg,$tel1,$tel2, $vaga,$pergunta,$arquivo,$data){
 
     $link = abreConexao();
 
-    $query = "insert into tb_curriculos(nome,email,cpf,rg,telefone_1,telefone_2,pergunta,arquivo,data) values('{$nome}','{$email}','{$cpf}','{$rg}','{$tel1}','{$tel2}','{$pergunta}',
+    $query = "insert into tb_curriculos(nome,email,cpf,rg,telefone_1,telefone_2,vaga,pergunta,arquivo,data) values('{$nome}','{$email}','{$cpf}','{$rg}','{$tel1}','{$tel2}','{$vaga}','{$pergunta}',
     '{$arquivo}','{$data}')";
 
     echo $query."<br>";
@@ -265,22 +265,16 @@ Function updateGrade($id,$segunda, $terca, $quarta, $quinta, $sexta, $sabado){
 
 //  ----------------------------------------------------------------------------------------------------------------
 
-function createLoja($localizacao, $cnpj, $endereco_id, $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf){
+function createLoja($localizacao, $cnpj, $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf){
     $link = abreConexao();
 
-    $query =  "insert into tb_endereco(rua, numero, complemento, cep, cidade, bairro, uf) values('{$rua}',{$numero},'{$complemento}','{$cep}',
+    $query = "insert into tb_lojas(localizacao, cnpj, rua, numero, complemento, cep, cidade, bairro, uf) values ('{$localizacao}','{$cnpj}','{$rua}',{$numero},'{$complemento}','{$cep}',
     '{$cidade}','{$bairro}','{$uf}')";
-    $query2 = "insert into tb_lojas(localizacao, cnpj, endereco_id) values ('{$localizacao}','{$cnpj}',{$endereco_id})";
 
     echo $query."<br>";
-    echo $query2;
-
     try{
         if(mysqli_query($link,$query)){
-            if(mysqli_query($link, $query2)){
-
                 return true;
-            }
         }
     } catch(\Throwable $th){
         throw new \Exception("Erro ao atualizar o banco",1);
@@ -315,6 +309,28 @@ function getLoja(){
         mysqli_close($link);
     }
 }
+
+//  -----------------------------------------------------------------------------------------------------------------------
+
+function deleteLoja($id){
+
+    $link = abreConexao();
+
+    $query = "delete from tb_lojas where id_loja = '{$id}'";
+    echo $query;
+
+    try{
+        if(mysqli_query($link,$query)){
+                return true;
+        }
+    } catch(\Throwable $th){
+        throw new \Exception("Erro ao atualizar o banco",1);
+        return false;
+    } finally{
+        mysqli_close($link);
+    }
+}
+
 
 // ------------------------------------------------------------------------------------------------------------------
 
@@ -387,49 +403,78 @@ function redefineSenha($novasenha, $usuario) {
     }
 }
 
-// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Função para listar usuarios
+//---------------------------------------------------------------------------------------------------------------------
 
-function listaUser(){
+function getCurriculoNome($nome){
     $link = abreConexao();
 
-    $query = "select * from tb_login order by usuario";
+    $query = "select arquivo from tb_curriculos where nome = {'$nome'}";
 
     try{
-        $rs = mysqli_query($link,$query);
-        $listaUser = Array();
+        
+        $rs = mysqli_query($link, $query);
+        $listaFale = Array();
 
         while($linha = mysqli_fetch_assoc($rs)){
-            array_push($listaUser, $linha);
+            array_push($listaFale, $linha);
         }
 
-        return $listaUser;
-    } catch(\Throwable $th){
-        throw new \Exception("Erro ao gravar no banco",1);
-        return false;
-    } finally{
+        return $listaFale;
+    } catch(\Throwable $th) {
+        throw new \Exception("Erro ao listar do banco", 1);
+        return Array(); // retorna uma estrutura de array vazio
+    } finally {
         mysqli_close($link);
     }
 }
 
-//Função para Editar usuarios
+//---------------------------------------------------------------------------------------------------------------------
 
-Function updateUser($id,$usuario,$tipo){
+function getCurriculoCPF($cpf){
     $link = abreConexao();
 
-    $query = "update tb_login set usuario = '{$usuario}', tipo= '{$tipo}' where id_login = {$id}";
-
-    echo $query."<br>";
+    $query = "select arquivo from tb_curriculos where cpf = {'$cpf'}";
 
     try{
-        if(mysqli_query($link, $query)) {
-            return true;
+        
+        $rs = mysqli_query($link, $query);
+        $listaFale = Array();
+
+        while($linha = mysqli_fetch_assoc($rs)){
+            array_push($listaFale, $linha);
         }
+
+        return $listaFale;
     } catch(\Throwable $th) {
-        throw new \Exception("Erro ao atualizar no banco", 1);
-        return false;
+        throw new \Exception("Erro ao listar do banco", 1);
+        return Array(); // retorna uma estrutura de array vazio
     } finally {
         mysqli_close($link);
     }
- }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+function getCurriculoEmail($email){
+    $link = abreConexao();
+
+    $query = "select arquivo from tb_curriculos where email = {'$email'}";
+
+    try{
+        
+        $rs = mysqli_query($link, $query);
+        $listaFale = Array();
+
+        while($linha = mysqli_fetch_assoc($rs)){
+            array_push($listaFale, $linha);
+        }
+
+        return $listaFale;
+    } catch(\Throwable $th) {
+        throw new \Exception("Erro ao listar do banco", 1);
+        return Array(); // retorna uma estrutura de array vazio
+    } finally {
+        mysqli_close($link);
+    }
+}

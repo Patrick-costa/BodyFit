@@ -14,8 +14,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $bairro = filter_input(INPUT_POST, "bairro") ?? "";
     $uf = filter_input(INPUT_POST, "estado") ?? "";
 
-    if(createLoja($localizacao, $cnpj, $endereco_id, $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf)){
+    if(createLoja($localizacao, $cnpj, $rua, $numero, $complemento, $cep, $cidade, $bairro, $uf)){
         echo " Loja Cadastrada com sucesso ";
+        header('location: ../index.php');
     } else{
         echo " Erro ao gravar loja ";
     }

@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/main.css">
-
+    <script src="./js/jquery-3.1.1.min.js"></script>
     <script src="./js/fontawesome.js"></script>
     <link rel="icon" href="./Imagens/haltere.png" type="image/x-icon">
     <title>BodyFit - Sua Sáude Esta Aqui!</title>
@@ -78,7 +78,7 @@
                                             data-grade_quarta="<?= $grade['quarta_feira'] ?>"
                                             data-grade_quinta="<?= $grade['quinta_feira'] ?>"
                                             data-grade_sexta="<?= $grade['sexta_feira'] ?>"
-                                            data-grade_sabado="<?= $grade['sabado'] ?>" style="color: gray;"><i id="edit" class="fas fa-edit"></i></a></td>
+                                            data-grade_sabado="<?= $grade['sabado'] ?>">Editar</a></td>
                                 </tr>
 
                                 <?php endforeach; ?>
@@ -94,6 +94,91 @@
     </div>
     <br><br><br><br><br>
     <?php include 'rodape.php'; ?>
+
+       <!-- Modal Curriculo -->
+    <div class="modal fade" id="curriculo" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Pesquisar Curriculos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="busca-c" method="POST" action="">
+                        <select class="busca-curriculo" id="busca-curriculo">
+                            <option selected></option>
+                            <option value="nome">Nome</option>
+                            <option value="email">Email</option>
+                            <option value="cpf">CPF</option>
+                            <option value="vaga">Vaga</option>
+                        </select>
+
+                        <input type="hidden" class="input-nome" id="input-nome" name="nome" placeholder="Digite o nome"
+                        style="width:60%">
+                        <input type="hidden" class="input-email" id="input-email" name="email" placeholder="Digite o email" style="width:60%">
+                        <input type="hidden" class="input-cpf" id="input-cpf" name="cpf" placeholder="Digite o cpf" style="width:60%">
+                        <input type="hidden" class="input-vaga" id="input-vaga" name="vaga" placeholder="Digite a vaga" style="width:60%">
+                    </form>
+
+                <br>
+                    <ul class="resultado" style="color: black">
+
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Modal lOJAS -->
+<div class="modal fade" id="lojas2" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Lojas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php 
+                        foreach(ListaLojas() as $loja): ?>
+                    <span style="font-size: 20px; font-weight: 600"><?=$loja['localizacao']?></span><br>
+                    Rua: <?=$loja['rua']?><br>
+                    N°: <?=$loja['numero']?><br>
+                    Cidade: <?=$loja['cidade']?><br>
+                    <input type="hidden" id="id" value="<?=$loja['id_loja']?>">
+                    <a href="./crud/deleteLoja.php?id=<?= $loja['id_loja'] ?>"
+                        onclick="return confirm('Você tem certeza?')">Excluir</a>
+                    <hr>
+                    <br>
+                    <?php endforeach ?>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <?php 
+                    
+                    if(!empty($_SESSION['usuario'])){
+                        if($_SESSION['tipo'] == "Administrador"){
+                            echo '<button type="button" class="btn btn-secondary"><a href="cadastrarLoja.php" style="color: white; text-decoration: none;">Cadastrar Loja</a></button>';
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="atividade" tabindex="-1" role="dialog" aria-labelledby="cursoModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -165,13 +250,50 @@
         </div>
     </div>
 
+    <script>
+
+        $(function () {
+            $('.busca-curriculo').change(function () {
+                var id = jQuery(this).val();
+
+                if (id == "cpf") {
+                    $('.input-cpf').attr("type", "text");
+                    $('.input-nome').attr("type", "hidden");
+                    $('.input-email').attr("type", "hidden");
+                    $('.input-vaga').attr("type", "hidden");
+                }
+                if (id == "nome") {
+                    $('.input-cpf').attr("type", "hidden");
+                    $('.input-nome').attr("type", "text");
+                    $('.input-email').attr("type", "hidden");
+                    $('.input-vaga').attr("type", "hidden");
+                }
+                if (id == "email") {
+                    $('.input-cpf').attr("type", "hidden");
+                    $('.input-nome').attr("type", "hidden");
+                    $('.input-email').attr("type", "text");
+                    $('.input-vaga').attr("type", "hidden");
+                }
+
+                if (id == "vaga") {
+                    $('.input-cpf').attr("type", "hidden");
+                    $('.input-nome').attr("type", "hidden");
+                    $('.input-email').attr("type", "hidden");
+                    $('.input-vaga').attr("type", "text");
+                }
+            });
+
+        });
+    </script>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
 
-    <script src="./js/jquery-3.1.1.min.js"></script>
+
     <script src="./js/galeria.js"></script>
     <script src="../academia/js/app.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script type="text/javascript" src="personalizado.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
@@ -213,6 +335,13 @@
 
 
     </script>
+
+        <!--Script para Mascara -->
+        <script>
+        $(".input-cpf").mask("000.000.000-00");
+
+    </script>
+
 </body>
 
 </html>

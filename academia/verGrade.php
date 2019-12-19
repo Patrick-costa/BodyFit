@@ -77,7 +77,44 @@
     <br><br><br><br><br>
     <?php include 'rodape.php'; ?>
 
+<!-- Modal lOJAS -->
+<div class="modal fade" id="lojas" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Lojas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php 
+                        foreach(ListaLojas() as $loja): ?>
+                    <span style="font-size: 20px; font-weight: 600"><?=$loja['localizacao']?></span><br>
+                    Rua: <?=$loja['rua']?><br>
+                    N°: <?=$loja['numero']?><br>
+                    Cidade: <?=$loja['cidade']?><br>
+                    <hr>
+                    <br>
+                    <?php endforeach ?>
 
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <?php 
+                    
+                    if(!empty($_SESSION['usuario'])){
+                        if($_SESSION['tipo'] == "Administrador"){
+                        echo '<button type="button" class="btn btn-secondary"><a href="cadastrarLoja.php" style="color: white; text-decoration: none;">Cadastrar Loja</a></button>';
+                    }
+                }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

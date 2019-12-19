@@ -6,7 +6,6 @@ if($_SESSION['tipo'] != 'Administrador'){
     header('location: index.php');
 }
 
-$chave = "(select id_endereco from tb_endereco order by id_endereco DESC LIMIT 1)"
 ?>
 
 <!DOCTYPE html>
@@ -115,8 +114,6 @@ else if($_SESSION['usuario']){
                         </select>
                     </div>
                 </div>
-                <input type="hidden" class="input-form3" placeholder="Escreva a localização da loja" name="chave" value="<?=$chave?>"
-                    required>
                 <br><br>
                 <div class="col-xs-12 text-right ">
                     <input type="submit" class="button-contato" style="width: 120px;" form="dtipo">
